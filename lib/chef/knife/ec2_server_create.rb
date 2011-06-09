@@ -122,7 +122,7 @@ class Chef
         :long => "--distro DISTRO",
         :description => "Bootstrap a distro using a template",
         :proc => Proc.new { |d| Chef::Config[:knife][:distro] = d },
-        :default => "ubuntu10.04-gems"
+        :default => "debian6.0-apt"
 
       option :template_file,
         :long => "--template-file TEMPLATE",
@@ -318,7 +318,7 @@ class Chef
         bootstrap.config[:prerelease] = config[:prerelease]
         bootstrap.config[:bootstrap_version] = locate_config_value(:bootstrap_version)
         bootstrap.config[:distro] = locate_config_value(:distro)
-        bootstrap.config[:use_sudo] = true unless config[:ssh_user] == 'root'
+        bootstrap.config[:use_sudo] = false
         bootstrap.config[:template_file] = locate_config_value(:template_file)
         bootstrap.config[:environment] = config[:environment]
         # may be needed for vpc_mode
